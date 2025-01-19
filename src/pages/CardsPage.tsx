@@ -1,6 +1,8 @@
-import CardItem from "../components/CardItem"
 import { useEffect, useState } from "react";
 import axios from "../api/axiosClient";
+
+import CardItem from "../components/CardItem"
+import CardsList from "../components/CardsList";
 
 function CardsPage() {
       const [card, setCard] = useState<{ title: string; description: string } | null>(null);
@@ -19,7 +21,7 @@ function CardsPage() {
       return (
     <div className="p-4 flex flex-col w-full gap-4 items-center">
       <h1 className="text-xl font-bold">Cards Page</h1>
-      <p>Cards page</p>
+      <CardsList />
       {card && <CardItem title={card.title} description={card.description} />}
     </div>
   )
