@@ -1,7 +1,7 @@
 import axiosClient from './axiosClient';
 
-export const getCards = async () => {
-  const response = await axiosClient.get('/cards');
+export const getCard = async (id: string) => {
+  const response = await axiosClient.get(`/cards/${id}`);
   return response.data;
 };
 
