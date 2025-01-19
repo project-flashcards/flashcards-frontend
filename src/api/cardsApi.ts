@@ -10,4 +10,7 @@ export const createCard = async (newCard: any) => {
   return response.data;
 };
 
-
+export const deleteCard = async (id: string) => {
+  const response = await axiosClient.delete(`/cards/${id}`);
+  return response.data;
+}

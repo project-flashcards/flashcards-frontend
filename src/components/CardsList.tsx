@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/axiosClient';
+import { deleteCard } from '../api/cardsApi';
 
 type Tag = {
   id: string;
@@ -9,6 +10,7 @@ interface Card {
   title: string;
   description: string;
   tags: Tag[];
+  id: string;
 }
 
 export default function CardsList() {
@@ -24,7 +26,6 @@ export default function CardsList() {
       });
     console.log('cards', cards)
   }, []);
-
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 w-full">
@@ -62,13 +63,14 @@ export default function CardsList() {
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   </th>
                   <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-3">
-                    <span className="sr-only">Edit</span>
+                    <span className="sr-only">Delete</span>
+
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white">
                 {cards && cards.map((card) => (
-                  <tr key={card.title} className="even:bg-gray-50">
+                  <tr key={card.id} className="even:bg-gray-50">
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                       {card.title}
                     </td>
@@ -80,8 +82,12 @@ export default function CardsList() {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{card.description}</td>
                     {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{card.role}</td> */}
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-                      <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                        Edit<span className="sr-only">, {card.title}</span>
+                      <a href="#" onClick={() => {
+                        deleteCard(card.id).then(() => {
+                          setCards(cards.filter(c => c.id !== card.id));
+                        });
+                      }} className="text-indigo-600 hover:text-indigo-900">
+                        Delete<span className="sr-only">, {card.title}</span>
                       </a>
                     </td>
                   </tr>
