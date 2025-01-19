@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import svgLogo from '/logo.svg'
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
+  { name: 'Promo', href: '/promo' },
+  { name: 'Cards', href: '/cards' },
   { name: 'Marketplace', href: '#' },
   { name: 'Company', href: '#' },
 ]
@@ -16,13 +17,23 @@ export default function Header() {
     <header className="bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <a
+            href="/"
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+          e.preventDefault();
+          window.location.reload();
+              }
+            }}
+            className="-m-1.5 p-1.5 flex items-center gap-x-2.5"
+          >
+            <span className="sr-only">Flash Cards</span>
             <img
               alt=""
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+              src={svgLogo}
               className="h-8 w-auto"
             />
+            <span>Flash Cards</span>
           </a>
         </div>
         <div className="flex lg:hidden">
