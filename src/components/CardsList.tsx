@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/axiosClient';
 import { deleteCard } from '../api/cardsApi';
+import Modal from './modals/Modal';
 
 type Tag = {
   id: string;
@@ -15,6 +16,7 @@ interface Card {
 
 export default function CardsList() {
   const [cards, setCards] = useState<Card[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     axios.get('/cards/')
@@ -38,10 +40,11 @@ export default function CardsList() {
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
+            onClick={() => setIsModalOpen(true)}
             type="button"
             className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Add user
+            Add Card
           </button>
         </div>
       </div>
@@ -97,6 +100,7 @@ export default function CardsList() {
           </div>
         </div>
       </div>
+      <Modal title="Add card" isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }} btnTitle="Create" children={undefined} />
     </div>
   );
 }
