@@ -16,7 +16,8 @@ export const CreateCardModal: React.FC<CreateCardModalProps> = ({ isOpen, onClos
   })}
     onSubmit={(values, { setSubmitting }) => {
       createCard(values);
-      setSubmitting(false);
+      setSubmitting(true);
+      onClose();
     }}
   >
     {({ isSubmitting }) => (
