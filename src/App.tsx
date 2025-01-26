@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import CardsPage from './pages/CardsPage'
 import PromoPage from './pages/PromoPage'
+import PracticePage from './pages/PracticePage'
 import Header from './layouts/Header';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/cards" element={<CardsPage />} />
           <Route path="/promo" element={<PromoPage />} />
+          <Route path="/practice" element={<PracticePage/>} />
           <Route path="*" element={<Navigate to="/cards" />} />
         </Routes>
       </div>

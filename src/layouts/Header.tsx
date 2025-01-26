@@ -6,7 +6,7 @@ import svgLogo from '/logo.svg'
 const navigation = [
   { name: 'Promo', href: '/promo' },
   { name: 'Cards', href: '/cards' },
-  { name: 'Marketplace', href: '#' },
+  { name: 'Practice', href: '/practice' },
   { name: 'Company', href: '#' },
 ]
 
