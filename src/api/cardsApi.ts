@@ -17,3 +17,8 @@ export const deleteCard = async (id: string) => {
   const response = await axiosClient.delete(`/api/v1/cards/${id}`);
   return response.data;
 }
+
+export const GetRandomCard = async () => {
+  const response = await axiosClient.get('/api/v1/cards/random');
+  return response.data;
+}
