@@ -2,7 +2,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 
 interface ModalProps {
   title: string;
-  btnTitle: string;
+  btnTitle?: string;
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({ title, btnTitle, isOpen, onClose, childre
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-sm sm:p-6 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative transform overflow-hidden rounded-lg bg-gray-200 px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-sm sm:p-6 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
             <div>
               <div className="mt-3 text-center sm:mt-5">
@@ -30,13 +30,13 @@ const Modal: React.FC<ModalProps> = ({ title, btnTitle, isOpen, onClose, childre
                   {title}
                 </DialogTitle>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <div className="text-sm text-gray-500">
                     {children}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="mt-5 sm:mt-6">
+            {btnTitle && <div className="mt-5 sm:mt-6">
               <button
                 type="button"
                 onClick={() => onClose()}
@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({ title, btnTitle, isOpen, onClose, childre
               >
                 {btnTitle}
               </button>
-            </div>
+            </div>}
           </DialogPanel>
         </div>
       </div>

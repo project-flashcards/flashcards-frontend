@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/axiosClient';
 import { deleteCard } from '../api/cardsApi';
-import Modal from './modals/Modal';
+import { CreateCardModal } from './modals/CreateCardModal';
 
 type Tag = {
   id: string;
@@ -19,7 +19,7 @@ export default function CardsList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    axios.get('/cards/')
+    axios.get('api/v1/cards/')
       .then(response => {
         setCards(response.data);
       })
@@ -100,7 +100,7 @@ export default function CardsList() {
           </div>
         </div>
       </div>
-      <Modal title="Add card" isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }} btnTitle="Create" children={undefined} />
+      <CreateCardModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

@@ -8,7 +8,7 @@ function CardsPage() {
       const [card, setCard] = useState<{ title: string; description: string } | null>(null);
 
       useEffect(() => {
-        axios.get('/cards/ff32e99f-575b-473f-bc82-ca2fb46ae76c')
+        axios.get('/api/v1/cards/ff32e99f-575b-473f-bc82-ca2fb46ae76c')
           .then(response => {
             setCard(response.data);
           })
